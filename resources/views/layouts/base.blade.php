@@ -8,7 +8,27 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-    @yield('content')
+
+        @if (session('status'))
+            <div class="bg-info">
+            <h3>{{session('status')}}</h3> 
+            </div>
+            
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+        @endif
+
+        @yield('content')
+ 
 
     <script src="{{asset('js/app.js')}}"></script>
     
